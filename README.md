@@ -1,7 +1,9 @@
 Requirements
 
 Build a Retrieval Augmented Generation (RAG) system that leverages Weaviate as its vector database.
+
 Design a performant system that efficiently retrieves answers from uploaded documents in various formats.
+
 Develop a robust backend system focused on data ingestion, embedding generation, indexing, and retrieval.
 
 1. Document Ingestion & Embedding Generation
