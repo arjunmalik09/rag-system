@@ -78,3 +78,14 @@ Functional Requirements
     * Are the provided instructions clear, comprehensive, and easy to follow?
 
 Solution
+
+1. CRUD API for Document Metadata
+2. Upload API for Document Ingestion
+3. Query API
+
+Deploy
+
+```
+cd deploy && docker-compose up
+open http://127.0.0.1:8000/docs
+```
