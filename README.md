@@ -79,9 +79,13 @@ Functional Requirements
 
 Solution
 
-1. CRUD API for Document Metadata
-2. Upload API for Document Ingestion
-3. Query API
+1. Upload API for Document Ingestion
+Use the POST /upload API endpoint to upload a document.
+This will process the document, generate embeddings, and store them in Weaviate.
+
+2. Query API
+Use the POST /query endpoint with a query string to search for relevant document chunks.
+The system will return the most relevant results from Weaviate.
 
 Deploy
 

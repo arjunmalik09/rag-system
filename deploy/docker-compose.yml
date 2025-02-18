@@ -1,13 +1,4 @@
 services:
-  web:
-    build: ../rag-service
-    ports:
-      - "8000:8000"
-    develop:
-      watch:
-        - action: sync
-          path: ../rag-service
-          target: /code
   weaviate:
     command:
     - --host
@@ -18,6 +9,7 @@ services:
     - http
     image: "cr.weaviate.io/semitechnologies/weaviate:1.28.5"
     ports:
+    - 8080:8080
     - 50051:50051
     volumes:
     - weaviate_data:/var/lib/weaviate
@@ -35,3 +27,15 @@ services:
       - "11434:11434"
     volumes:
       - ollama:/root/.ollama
+  rag-service:
+    build: ../rag-service
+    ports:
+      - "8000:8000"
+    depends_on:
+      - weaviate
+      - ollma
+    develop:
+      watch:
+        - action: sync
+          path: ../rag-service
+          target: /code

@@ -1,22 +1,22 @@
 from database import Database
 import weaviate
 from weaviate.classes.config import Configure
-from typing import List
+from typing import List, Optional
 
 class Weaviate(Database):
     """
     Weaviate database connector
     """
-    def __init__(self):
-        self.get_client()
+    def __init__(self, uri: Optional[str] = "http://host.docker.internal:8080"):
+        self.get_client(uri)
 
     def get_client(self, uri="http://host.docker.internal:8080") -> weaviate.Client:
         if self.client is None:
             self.client = weaviate.Client(uri)
         return self.client
 
-    def get(self, key: str, collection: str) -> str:
-        return self.get_collection(collection).query.near_text(query=key, limit=1)
+    def get(self, key: str, collection: str, limit: int = 10) -> str:
+        return self.get_collection(collection).query.near_text(query=key, limit=limit)
 
     def put(self, key: str, value: dict, collection: str) -> None:
         with self.get_collection(collection).batch.dynamic() as batch:
